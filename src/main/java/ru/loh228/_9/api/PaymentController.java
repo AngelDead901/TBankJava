@@ -1,5 +1,6 @@
 package ru.loh228._9.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -14,20 +15,19 @@ public class PaymentController {
             3, 100932.0
     );
 
-    @PostMapping("add/{id}/{value}")
-    public void setPaymentSum(@PathVariable int id, @PathVariable double value) {
-        map.put(id, value);
+    @PostMapping("login/login={login}?{password}")
+    public void login(@PathVariable String login, @PathVariable String password) {
+        System.out.println(login + " " + password);
     }
 
-    @GetMapping("sum/{id}")
-    public String getPaymentSum(@PathVariable int id) {
-        try {
-            return map.get(id).toString();
-        }
-        catch (Exception e) {
-            return "Payment not found";
-        }
-    }
+    /*@GetMapping("get")
+    public String getSomething(@RequestBody PaymentSearchController request) {
+        return new PaymentSearchResponse(
+                request.getId(),
+                request.getSum()
+        ).toString();
+
+    }*/
 
     @GetMapping("date")
     public LocalDateTime getPaymentDate(){
